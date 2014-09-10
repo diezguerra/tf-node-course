@@ -1,0 +1,12 @@
+{
+  "name": "httpServ",
+  "version": "0.0.0",
+  "description": "sample http server",
+  "main": "main.js",
+  "scripts": {
+    "test": "npm test",
+    "start": "node main.js"
+  },
+  "author": "Saool",
+  "license": "ALL THEM RIGHTS"
+}
