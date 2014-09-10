@@ -9,7 +9,8 @@
   "author": "Saool",
   "license": "ALL RIGHTS AND THEN SOME RESERVED",
   "dependencies": {
-    "prompt": "~0.2.13"
+    "prompt": "~0.2.13",
+    "chai": "~1.9.1"
   },
   "devDependencies": {
     "mocha": "~1.21.4",
