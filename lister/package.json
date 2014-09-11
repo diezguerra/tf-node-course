@@ -1,0 +1,12 @@
+{
+  "name": "lister",
+  "version": "0.0.0",
+  "description": "listss",
+  "main": "main.js",
+  "scripts": {
+    "test": "npm test",
+    "start": "node main.js"
+  },
+  "author": "Saool",
+  "license": "ALL THEM RIGHTS"
+}
