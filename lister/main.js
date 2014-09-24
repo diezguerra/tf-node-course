@@ -1,6 +1,10 @@
 var http = require('http');
 var url = require('url');
 var items = [];
+var fs = require('fs');
+var parse = require('url').parse;
+var join = require('path').join;
+var root = __dirname;
 
 var parsePath = function(req, res, callback) {
 
@@ -20,7 +24,36 @@ var parsePath = function(req, res, callback) {
         }
 }
 
+var serveIndex = function serveIndex(req, res) {
+    var url = parse(req.url);
+    var path = join(root, url.pathname);
+    listOfItems = '';
+    for(var item in items) {
+        listOfItems += (
+                '<div><li style="display:inline">' +
+                items[item].replace('item=', '') +
+                '</li><form method="POST" style="display:inline" action="/' +
+                item + '?_method=DELETE"><button type="submit">X</button>' +
+                '</form></div>');
+    }
+    fs.readFile('index.html', function(err, data) {
+        var template = data.toString();
+        template = template.replace('{{ advanced_templating }}', listOfItems);
+        res.write(template);
+        res.end();
+    });
+}
+
 var server = http.createServer(function(req, res) {
+
+    var url_parts = url.parse(req.url, true);
+    var query = url_parts.query;
+    var _method = query._method;
+
+    if(req.method === "POST" && _method === "DELETE") {
+        req.method = "DELETE";
+    }
+
     switch (req.method) {
     case 'POST':
         var item = '';
@@ -34,6 +67,10 @@ var server = http.createServer(function(req, res) {
         });
         break;
     case 'GET':
+        if(req.url == '/'){
+            serveIndex(req, res);
+            break;
+        }
         items.forEach(function (item, i) {
             res.write(i + '. ' + item + '\n');
         });
