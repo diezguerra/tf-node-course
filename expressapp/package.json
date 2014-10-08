@@ -1,0 +1,15 @@
+{
+  "name": "expressapp",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "saool",
+  "license": "THEM RIGHTS",
+  "dependencies": {
+    "express": "~4.9.5",
+    "express-handlebars": "~1.1.0"
+  }
+}
